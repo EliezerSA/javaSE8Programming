@@ -1,0 +1,97 @@
+Ejemplo Clases Genricas con Java
+
+En este sistema de ventas, implementaremos una clase llamada SalesSystem que manejará diferentes tipos de productos. Cada producto tendrá un precio y podremos realizar operaciones como agregar productos a una lista de ventas, calcular el total de ventas y encontrar el producto más caro.
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Product implements Comparable<Product> {
+    private String name;
+    private double price;
+
+    public Product(String name, double price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        return Double.compare(this.price, other.price);
+    }
+
+    @Override
+    public String toString() {
+        return name + " - $" + price;
+    }
+}
+
+public class SalesSystem<T extends Product> {
+    private List<T> sales;
+
+    public SalesSystem() {
+        sales = new ArrayList<>();
+    }
+
+    public void addSale(T product) {
+        sales.add(product);
+    }
+
+    public double getTotalSales() {
+        double total = 0.0;
+        for (T product : sales) {
+            total += product.getPrice();
+        }
+        return total;
+    }
+
+    public T getMostExpensiveProduct() {
+        if (sales.isEmpty()) {
+            return null;
+        }
+        T maxProduct = sales.get(0);
+        for (T product : sales) {
+            if (product.compareTo(maxProduct) > 0) {
+                maxProduct = product;
+            }
+        }
+        return maxProduct;
+    }
+
+    public static void main(String[] args) {
+        SalesSystem<Product> salesSystem = new SalesSystem<>();
+
+        Product product1 = new Product("iPhone", 999.99);
+        Product product2 = new Product("Samsung Galaxy", 899.99);
+        Product product3 = new Product("Google Pixel", 799.99);
+
+        salesSystem.addSale(product1);
+        salesSystem.addSale(product2);
+        salesSystem.addSale(product3);
+
+        double totalSales = salesSystem.getTotalSales();
+        System.out.println("Total Sales: $" + totalSales);
+
+        Product mostExpensiveProduct = salesSystem.getMostExpensiveProduct();
+        System.out.println("Most Expensive Product: " + mostExpensiveProduct);
+    }
+}
+
+
+En este ejemplo, hemos definido una clase Product que representa un producto en el sistema de ventas. La clase Product implementa la interfaz Comparable para que podamos comparar los productos según su precio.
+
+La clase SalesSystem utiliza un parámetro genérico T que extiende a Product, lo que significa que solo podemos utilizar tipos de productos o subtipos de productos. La lista sales almacena las ventas realizadas.
+
+El método addSale permite agregar una venta de un producto a la lista. El método getTotalSales calcula el total de las ventas sumando los precios de todos los productos en la lista. El método getMostExpensiveProduct encuentra el producto más caro en la lista de ventas utilizando el método compareTo de la interfaz Comparable.
+
+En el método main, creamos un objeto SalesSystem y agregamos tres productos a la lista de ventas. Luego, calculamos el total de las ventas y encontramos el producto más caro, y mostramos los resultados por pantalla.
+
+Este ejemplo demuestra cómo utilizar genéricos con límites, tipos de lista, genéricos comodín y comparables para construir un sistema avanzado para ventas en Java.
+

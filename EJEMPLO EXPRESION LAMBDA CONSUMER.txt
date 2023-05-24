@@ -1,0 +1,23 @@
+EJEMPLO EXPRESION LAMBDA CONSUMER
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
+public class EjemploConsumer {
+
+    public static void main(String[] args) {
+        // Crear una lista de números enteros
+        List<Integer> numeros = new ArrayList<>();
+        numeros.add(1);
+        numeros.add(2);
+        numeros.add(3);
+        numeros.add(4);
+        numeros.add(5);
+
+        // Usar una expresión lambda de tipo Consumer para imprimir cada número
+        Consumer<Integer> imprimirNumero = (numero) -> System.out.println(numero);
+
+        // Aplicar el Consumer a cada número en la lista
+        numeros.forEach(imprimirNumero);
+    }
+}

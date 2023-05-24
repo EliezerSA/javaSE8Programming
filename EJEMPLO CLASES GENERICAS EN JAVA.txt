@@ -1,0 +1,164 @@
+EJEMPLO CLASES GENERICAS
+Claro, puedo ayudarte a escribir un código de una aplicación de ventas utilizando clases genéricas en Java. A continuación te mostraré un ejemplo básico:
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Producto {
+    private String nombre;
+    private double precio;
+
+    public Producto(String nombre, double precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " - $" + precio;
+    }
+}
+
+class CarritoDeCompras<T extends Producto> {
+    private List<T> productos;
+
+    public CarritoDeCompras() {
+        productos = new ArrayList<>();
+    }
+
+    public void agregarProducto(T producto) {
+        productos.add(producto);
+    }
+
+    public void mostrarProductos() {
+        for (T producto : productos) {
+            System.out.println(producto);
+        }
+    }
+
+    public double calcularTotal() {
+        double total = 0.0;
+        for (T producto : productos) {
+            total += producto.getPrecio();
+        }
+        return total;
+    }
+}
+
+public class VentasApp {
+    public static void main(String[] args) {
+        CarritoDeCompras<Producto> carrito = new CarritoDeCompras<>();
+
+        // Agregar productos al carrito
+        Producto producto1 = new Producto("Camisa", 29.99);
+        Producto producto2 = new Producto("Pantalón", 49.99);
+        carrito.agregarProducto(producto1);
+        carrito.agregarProducto(producto2);
+
+        // Mostrar los productos en el carrito
+        carrito.mostrarProductos();
+
+        // Calcular el total de la compra
+        double total = carrito.calcularTotal();
+        System.out.println("Total: $" + total);
+    }
+}
+
+
+
+En este ejemplo, tenemos dos clases principales: Producto y CarritoDeCompras. La clase Producto representa un artículo en venta y tiene dos atributos: nombre y precio. La clase CarritoDeCompras es una clase genérica que puede contener cualquier tipo de Producto (u otra clase que extienda Producto). Utiliza una lista para almacenar los productos agregados al carrito.
+
+El método agregarProducto permite agregar un producto al carrito, el método mostrarProductos muestra todos los productos en el carrito y el método calcularTotal calcula el total de la compra sumando los precios de los productos en el carrito.
+
+En el método main, creamos un objeto CarritoDeCompras y agregamos dos productos al carrito (producto1 y producto2). Luego, mostramos los productos en el carrito y calculamos el total de la compra.
+
+Ten en cuenta que este es solo un ejemplo básico para ilustrar el uso de clases genéricas en Java. Dependiendo de tus necesidades específicas, es posible que debas agregar más funcionalidades y realizar ajustes en el código.
+
+
+AHORA SI AGREGAMOS MAS PRODUCTOS
+import java.util.ArrayList;
+import java.util.List;
+
+class Producto {
+    private String nombre;
+    private double precio;
+
+    public Producto(String nombre, double precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " - $" + precio;
+    }
+}
+
+class CarritoDeCompras<T extends Producto> {
+    private List<T> productos;
+
+    public CarritoDeCompras() {
+        productos = new ArrayList<>();
+    }
+
+    public void agregarProducto(T producto) {
+        productos.add(producto);
+    }
+
+    public void mostrarProductos() {
+        for (T producto : productos) {
+            System.out.println(producto);
+        }
+    }
+
+    public double calcularTotal() {
+        double total = 0.0;
+        for (T producto : productos) {
+            total += producto.getPrecio();
+        }
+        return total;
+    }
+}
+
+public class VentasApp {
+    public static void main(String[] args) {
+        CarritoDeCompras<Producto> carrito = new CarritoDeCompras<>();
+
+        // Agregar productos al carrito
+        Producto producto1 = new Producto("Camisa", 29.99);
+        Producto producto2 = new Producto("Pantalón", 49.99);
+        Producto producto3 = new Producto("Zapatos", 59.99);
+        Producto producto4 = new Producto("Sombrero", 19.99);
+        Producto producto5 = new Producto("Calcetines", 9.99);
+
+        carrito.agregarProducto(producto1);
+        carrito.agregarProducto(producto2);
+        carrito.agregarProducto(producto3);
+        carrito.agregarProducto(producto4);
+        carrito.agregarProducto(producto5);
+
+        // Mostrar los productos en el carrito
+        carrito.mostrarProductos();
+
+        // Calcular el total de la compra
+        double total = carrito.calcularTotal();
+        System.out.println("Total: $" + total);
+    }
+}

@@ -1,0 +1,28 @@
+EJEMPLO API STREAM JAVA
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class EjemploStreamJava {
+    public static void main(String[] args) {
+        // Crear una lista de números
+        List<Integer> numeros = new ArrayList<>();
+        numeros.add(1);
+        numeros.add(2);
+        numeros.add(3);
+        numeros.add(4);
+        numeros.add(5);
+
+        // Usar stream para operar en la lista de números
+        int suma = numeros.stream()
+                .filter(num -> num % 2 == 0) // Filtrar números pares
+                .mapToInt(Integer::intValue) // Convertir stream a IntStream
+                .sum(); // Obtener la suma
+
+        // Imprimir la suma de los números pares
+        System.out.println("La suma de los números pares es: " + suma);
+    }
+}
+
+EXPLICACION
+En este ejemplo, se crea una lista de números del 1 al 5. Luego, se utiliza un stream para filtrar solo los números pares utilizando el método filter y se usa mapToInt para convertir el stream a un IntStream que permite operaciones numéricas más eficientes. Finalmente, se usa el método sum para obtener la suma de los números pares y se imprime el resultado en la consola.

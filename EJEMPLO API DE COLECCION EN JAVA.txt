@@ -1,0 +1,90 @@
+EJEMPLO API DE COLECCION EN JAVA
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Persona {
+    private int id;
+    private String nombre;
+    private int edad;
+
+    // Constructor
+    public Persona(int id, String nombre, int edad) {
+        this.id = id;
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    // Getters y Setters (omitted for brevity)
+}
+
+public class PersonasAPI {
+    private List<Persona> personas = new ArrayList<>();
+
+    // Agregar una persona
+    public void agregarPersona(Persona persona) {
+        personas.add(persona);
+    }
+
+    // Obtener todas las personas
+    public List<Persona> obtenerPersonas() {
+        return personas;
+    }
+
+    // Obtener una persona por ID
+    public Persona obtenerPersonaPorId(int id) {
+        for (Persona persona : personas) {
+            if (persona.getId() == id) {
+                return persona;
+            }
+        }
+        return null;
+    }
+
+    // Actualizar una persona por ID
+    public void actualizarPersona(int id, String nombre, int edad) {
+        for (Persona persona : personas) {
+            if (persona.getId() == id) {
+                persona.setNombre(nombre);
+                persona.setEdad(edad);
+                break;
+            }
+        }
+    }
+
+    // Eliminar una persona por ID
+    public void eliminarPersona(int id) {
+        personas.removeIf(persona -> persona.getId() == id);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        PersonasAPI personasAPI = new PersonasAPI();
+
+        // Agregar personas
+        personasAPI.agregarPersona(new Persona(1, "Juan", 25));
+        personasAPI.agregarPersona(new Persona(2, "María", 30));
+        personasAPI.agregarPersona(new Persona(3, "Carlos", 22));
+
+        // Obtener todas las personas
+        List<Persona> personas = personasAPI.obtenerPersonas();
+        System.out.println("Todas las personas:");
+        for (Persona persona : personas) {
+            System.out.println(persona.getId() + " - " + persona.getNombre() + " - " + persona.getEdad() + " años");
+        }
+
+        // Obtener una persona por ID
+        Persona persona1 = personasAPI.obtenerPersonaPorId(1);
+        System.out.println("Persona con ID 1: " + persona1.getNombre() + " - " + persona1.getEdad() + " años");
+
+        // Actualizar una persona por ID
+        personasAPI.actualizarPersona(2, "María Fernanda", 32);
+        System.out.println("Persona con ID 2 actualizada: " + personasAPI.obtenerPersonaPorId(2).getNombre() + " - " +
+                personasAPI.obtenerPersonaPorId(2).getEdad() + " años");
+
+        // Eliminar una persona por ID
+        personasAPI.eliminarPersona(3);
+        System.out.println("Persona con ID 3 eliminada.");
+    }
+}

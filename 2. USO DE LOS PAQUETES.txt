@@ -1,0 +1,17 @@
+2. USO DE LOS PAQUETES
+// Clase Principal en el paquete com.empresa.vista
+package com.empresa.vista;
+
+import com.empresa.modelo.Empleado; // Importamos la clase Empleado del paquete com.empresa.modelo
+import com.empresa.modelo.EmpleadoAdministrativo; // Importamos la clase EmpleadoAdministrativo del paquete com.empresa.modelo
+
+public class Principal {
+    public static void main(String[] args) {
+        // Creación de objetos de las clases Empleado y EmpleadoAdministrativo
+        Empleado empleado = new Empleado();
+        EmpleadoAdministrativo empleadoAdministrativo = new EmpleadoAdministrativo();
+        
+        // Utilización de los objetos creados
+        // ...
+    }
+}

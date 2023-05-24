@@ -1,0 +1,119 @@
+EJEMPLO USANDO INTERFACES EN JAVA 1
+
+Aquí tienes un ejemplo de cómo podrías implementar un sistema de ventas con operaciones CRUD (Crear, Leer, Actualizar y Eliminar) utilizando interfaces en Java:
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Definición de la interfaz para los productos
+interface Producto {
+    String getNombre();
+    double getPrecio();
+    void setPrecio(double precio);
+}
+
+// Clase que implementa la interfaz Producto para un tipo de producto específico
+class ProductoImpl implements Producto {
+    private String nombre;
+    private double precio;
+
+    public ProductoImpl(String nombre, double precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    @Override
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public double getPrecio() {
+        return precio;
+    }
+
+    @Override
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+}
+
+// Definición de la interfaz para el repositorio de productos
+interface ProductoRepository {
+    void agregarProducto(Producto producto);
+    Producto buscarProducto(String nombre);
+    void actualizarProducto(Producto producto);
+    void eliminarProducto(Producto producto);
+}
+
+// Clase que implementa la interfaz ProductoRepository
+class ProductoRepositoryImpl implements ProductoRepository {
+    private List<Producto> productos;
+
+    public ProductoRepositoryImpl() {
+        productos = new ArrayList<>();
+    }
+
+    @Override
+    public void agregarProducto(Producto producto) {
+        productos.add(producto);
+    }
+
+    @Override
+    public Producto buscarProducto(String nombre) {
+        for (Producto producto : productos) {
+            if (producto.getNombre().equals(nombre)) {
+                return producto;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void actualizarProducto(Producto producto) {
+        // Se puede implementar la lógica de actualización según sea necesario
+    }
+
+    @Override
+    public void eliminarProducto(Producto producto) {
+        productos.remove(producto);
+    }
+}
+
+// Ejemplo de uso de las interfaces y clases implementadas
+public class SistemaVentas {
+    public static void main(String[] args) {
+        // Creamos el repositorio de productos
+        ProductoRepository productoRepository = new ProductoRepositoryImpl();
+
+        // Agregamos un producto
+        Producto producto1 = new ProductoImpl("Producto 1", 10.99);
+        productoRepository.agregarProducto(producto1);
+
+        // Buscamos un producto
+        Producto productoEncontrado = productoRepository.buscarProducto("Producto 1");
+        if (productoEncontrado != null) {
+            System.out.println("Producto encontrado: " + productoEncontrado.getNombre() + " - Precio: $" + productoEncontrado.getPrecio());
+        }
+
+        // Actualizamos el precio de un producto
+        if (productoEncontrado != null) {
+            productoEncontrado.setPrecio(19.99);
+            productoRepository.actualizarProducto(productoEncontrado);
+        }
+
+        // Eliminamos un producto
+        if (productoEncontrado != null) {
+            productoRepository.eliminarProducto(productoEncontrado);
+        }
+    }
+}
+
+
+En este ejemplo, se definen las interfaces Producto y ProductoRepository. La interfaz Producto define los métodos para obtener el nombre, precio y establecer el precio de un producto. La interfaz ProductoRepository define los métodos para agregar, buscar, actualizar y eliminar productos en el repositorio.
+
+Luego, se implementan estas interfaces en las clases ProductoImpl y ProductoRepositoryImpl respectivamente. La clase ProductoImpl es una implementación concreta de la interfaz Producto, mientras que ProductoRepositoryImpl implementa la interfaz ProductoRepository y utiliza una lista de productos para almacenar los productos en el repositorio.
+
+En el método main de la clase SistemaVentas, se crea una instancia de ProductoRepositoryImpl para representar el repositorio de productos. Se realizan operaciones CRUD en el repositorio, como agregar un producto, buscar un producto por nombre, actualizar el precio de un producto y eliminar un producto.
+
+Ten en cuenta que este es solo un ejemplo básico para ilustrar el uso de interfaces en un sistema de ventas con operaciones CRUD. En una aplicación real, podrías tener más funcionalidades y consideraciones de diseño a tener en cuenta, como la persistencia de datos en una base de datos, validación de entrada, manejo de errores, entre otros.

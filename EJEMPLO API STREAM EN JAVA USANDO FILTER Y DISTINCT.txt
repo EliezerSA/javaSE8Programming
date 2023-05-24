@@ -1,0 +1,36 @@
+EJEMPLO API STREAM EN JAVA USANDO FILTER Y DISTINCT
+API de Stream en Java que utiliza los operadores filter y distinct para procesar una lista de números y obtener los números pares y distintos:
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class EjemploApiStream {
+
+    public static void main(String[] args) {
+        // Lista de números
+        List<Integer> numeros = new ArrayList<>();
+        numeros.add(2);
+        numeros.add(4);
+        numeros.add(6);
+        numeros.add(8);
+        numeros.add(10);
+        numeros.add(2);
+        numeros.add(4);
+        numeros.add(6);
+        
+        System.out.println("Números originales: " + numeros);
+
+        // Filtrar números pares y distintos
+        List<Integer> numerosParesDistintos = numeros.stream()
+                .filter(numero -> numero % 2 == 0) // Filtrar números pares
+                .distinct() // Filtrar números distintos
+                .collect(Collectors.toList()); // Colectar el resultado en una lista
+
+        System.out.println("Números pares y distintos: " + numerosParesDistintos);
+    }
+}
+
+
+EXPLICACION
+En este ejemplo, se crea una lista de números y se utiliza la API de Stream para filtrar los números pares y distintos. El operador filter se utiliza para seleccionar los números pares utilizando una expresión lambda que verifica si un número es divisible por 2. Luego, se utiliza el operador distinct para obtener los números distintos, es decir, se eliminan los duplicados en la lista. Finalmente, el resultado se recopila en una nueva lista utilizando el método collect de la clase Collectors.

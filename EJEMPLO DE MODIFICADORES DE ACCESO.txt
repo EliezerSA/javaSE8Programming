@@ -1,0 +1,23 @@
+EJEMPLO DE MODIFICADORES DE ACCESO
+cómo funcionan los modificadores de acceso en Java para controlar el acceso a los miembros de una clase:
+
+public class EjemploControlAcceso {
+    private int numeroPrivado; // Miembro privado de la clase
+    public int numeroPublico; // Miembro público de la clase
+    
+    // Método que accede a los miembros privados y públicos de la clase
+    public void accederMiembros() {
+        numeroPrivado = 10; // Acceso al miembro privado desde la propia clase
+        numeroPublico = 20; // Acceso al miembro público desde la propia clase
+    }
+    
+    // Método que accede sólo al miembro público de la clase
+    public void accederMiembroPublico() {
+        numeroPublico = 30; // Acceso al miembro público desde otra clase
+    }
+    
+    // Método que no tiene acceso a los miembros privados de la clase
+    public void noAccederMiembroPrivado() {
+        // numeroPrivado = 40; // ERROR: No se puede acceder al miembro privado desde otra clase
+    }
+}

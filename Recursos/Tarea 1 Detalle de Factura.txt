@@ -1,0 +1,20 @@
+Tarea 1: Detalle de Factura
+Se requiere de desarrollar un programa que reciba datos de la factura utilizando la clase Scanner
+
+La tarea consiste en crear una nueva clase con el metodo main que se llamara detalleDeFactura, se requiere desarrollar un programa
+que reciba datos de la factura usando la clase scanner:
+1. Reciba el nombre de la factura o descripcion, utilizar metodos nextline() para
+obtner el nombre de la factura con espacios.
+
+2. Reciba 2 precios de productos de tipos de double, utilizar el metodo nextDouble() para 
+obtner precios en decimales
+
+3. Calcular el total, sumando ambos precios y agregar valor de impuesto del 16%
+
+Se pide mostrar en un solo string  el nombre de la factura, el monto total bruto(antes de impuestos), el impuesto y el monto total neto
+inlcuyendo el impuesto
+
+EJMPLO: La factura de oficina tien un total bruto de 134.78, con un impuesto de 25.6082 y el monto de impuesto es de 160.3882
+
+
+Tiempo: 30 

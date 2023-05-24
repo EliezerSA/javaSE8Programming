@@ -1,0 +1,50 @@
+EJEMPLO API STREAM JAVA - OPERADOR FLAT MAP
+
+ejemplo de cómo implementar una API de streaming en Java utilizando el operador flatMap de Java 8+.
+
+Supongamos que tienes una lista de usuarios con información sobre sus nombres y correos electrónicos, y quieres obtener una lista plana de todos los correos electrónicos de esos usuarios. Puedes usar flatMap para lograrlo de manera concisa y funcional.
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+class Usuario {
+    private String nombre;
+    private List<String> correosElectronicos;
+
+    public Usuario(String nombre, List<String> correosElectronicos) {
+        this.nombre = nombre;
+        this.correosElectronicos = correosElectronicos;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public List<String> getCorreosElectronicos() {
+        return correosElectronicos;
+    }
+}
+
+public class EjemploApiStream {
+
+    public static void main(String[] args) {
+        // Lista de usuarios con información de nombres y correos electrónicos
+        List<Usuario> usuarios = new ArrayList<>();
+        usuarios.add(new Usuario("Juan", List.of("juan@gmail.com", "juan@hotmail.com")));
+        usuarios.add(new Usuario("María", List.of("maria@gmail.com")));
+        usuarios.add(new Usuario("Pedro", List.of("pedro@gmail.com", "pedro@hotmail.com", "pedro@yahoo.com")));
+
+        // Obtener una lista plana de todos los correos electrónicos de los usuarios
+        List<String> correosElectronicos = usuarios.stream()
+                .flatMap(usuario -> usuario.getCorreosElectronicos().stream()) // FlatMap para obtener una lista plana
+                .collect(Collectors.toList()); // Recolectar los correos electrónicos en una lista
+
+        // Imprimir los correos electrónicos obtenidos
+        System.out.println("Correos electrónicos: " + correosElectronicos);
+    }
+}
+
+
+EXPLICACION
+En este ejemplo, utilizamos flatMap para transformar cada lista de correos electrónicos de los usuarios en un solo flujo de correos electrónicos. Luego, utilizamos collect para recolectar todos los correos electrónicos en una lista. El resultado final es una lista plana con todos los correos electrónicos de los usuarios.

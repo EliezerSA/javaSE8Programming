@@ -1,0 +1,58 @@
+EJEMPLO CLASES ABSTRACTAS EN JAVA
+// Clase abstracta Animal
+abstract class Animal {
+    private String nombre;
+    
+    public Animal(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    // Método abstracto que debe ser implementado por las clases hijas
+    public abstract void hacerSonido();
+    
+    // Método concreto que puede ser utilizado por las clases hijas
+    public void dormir() {
+        System.out.println("El animal " + nombre + " está durmiendo.");
+    }
+}
+
+// Clase Perro que extiende de la clase Animal
+class Perro extends Animal {
+    public Perro(String nombre) {
+        super(nombre);
+    }
+    
+    // Implementación del método abstracto hacerSonido()
+    @Override
+    public void hacerSonido() {
+        System.out.println("El perro " + super.nombre + " está ladrando.");
+    }
+}
+
+// Clase Gato que extiende de la clase Animal
+class Gato extends Animal {
+    public Gato(String nombre) {
+        super(nombre);
+    }
+    
+    // Implementación del método abstracto hacerSonido()
+    @Override
+    public void hacerSonido() {
+        System.out.println("El gato " + super.nombre + " está maullando.");
+    }
+}
+
+public class EjemploClasesAbstractas {
+    public static void main(String[] args) {
+        // Creación de instancias de las clases hijas
+        Perro perro = new Perro("Fido");
+        Gato gato = new Gato("Misu");
+        
+        // Llamada a los métodos de las clases hijas
+        perro.hacerSonido(); // Output: El perro Fido está ladrando.
+        perro.dormir(); // Output: El animal Fido está durmiendo.
+        
+        gato.hacerSonido(); // Output: El gato Misu está maullando.
+        gato.dormir(); // Output: El animal Misu está durmiendo.
+    }
+}

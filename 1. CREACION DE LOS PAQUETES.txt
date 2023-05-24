@@ -1,0 +1,27 @@
+1. CREACION DE LOS PAQUETES
+// Dentro del directorio del proyecto, creamos los siguientes directorios
+// para representar los paquetes:
+// /src/com/empresa/modelo
+// /src/com/empresa/vista
+// /src/com/empresa/controlador
+
+// Clase Empleado en el paquete com.empresa.modelo
+package com.empresa.modelo;
+
+public class Empleado {
+    // Implementación de la clase Empleado
+}
+
+// Clase EmpleadoAdministrativo en el paquete com.empresa.modelo
+package com.empresa.modelo;
+
+public class EmpleadoAdministrativo {
+    // Implementación de la clase EmpleadoAdministrativo
+}
+
+// Clase EmpleadoVendedor en el paquete com.empresa.modelo
+package com.empresa.modelo;
+
+public class EmpleadoVendedor {
+    // Implementación de la clase EmpleadoVendedor
+}

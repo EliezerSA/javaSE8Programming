@@ -1,0 +1,68 @@
+EJEMPLLO API DE COLECCION DE JAVA - COMPARABLE Y COMPARATOR
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+// Clase para representar un objeto de tipo Persona
+class Persona implements Comparable<Persona> {
+    private String nombre;
+    private int edad;
+
+    // Constructor
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    // Getters y setters
+
+    // Método para comparar dos objetos de tipo Persona por su edad
+    @Override
+    public int compareTo(Persona otraPersona) {
+        return Integer.compare(this.edad, otraPersona.edad);
+    }
+
+    // Método toString para imprimir el objeto Persona
+    @Override
+    public String toString() {
+        return "Persona{" +
+                "nombre='" + nombre + '\'' +
+                ", edad=" + edad +
+                '}';
+    }
+}
+
+// Clase para comparar dos objetos de tipo Persona por su nombre
+class ComparadorPorNombre implements Comparator<Persona> {
+    @Override
+    public int compare(Persona persona1, Persona persona2) {
+        return persona1.getNombre().compareTo(persona2.getNombre());
+    }
+}
+
+public class EjemploAPIComparableComparator {
+    public static void main(String[] args) {
+        // Crear una lista de Personas
+        List<Persona> personas = new ArrayList<>();
+        personas.add(new Persona("Juan", 30));
+        personas.add(new Persona("María", 25));
+        personas.add(new Persona("Carlos", 35));
+        personas.add(new Persona("Luisa", 28));
+
+        // Ordenar la lista de Personas por edad utilizando Comparable
+        Collections.sort(personas);
+        System.out.println("Lista de Personas ordenadas por edad (Comparable):");
+        System.out.println(personas);
+
+        // Ordenar la lista de Personas por nombre utilizando Comparator
+        ComparadorPorNombre comparadorPorNombre = new ComparadorPorNombre();
+        Collections.sort(personas, comparadorPorNombre);
+        System.out.println("Lista de Personas ordenadas por nombre (Comparator):");
+        System.out.println(personas);
+    }
+}
+
+EXPLICACION 
+En este ejemplo, la clase Persona implementa la interfaz Comparable para que los objetos de tipo Persona sean comparables por su edad. Luego, se crea una clase separada ComparadorPorNombre que implementa la interfaz Comparator para comparar dos objetos de tipo Persona por su nombre. En la clase principal EjemploAPIComparableComparator, se crea una lista de objetos Persona y se utilizan los métodos Collections.sort() para ordenar la lista utilizando tanto la interfaz Comparable como la interfaz Comparator, y se imprime el resultado.
+
